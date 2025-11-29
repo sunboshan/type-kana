@@ -9,7 +9,7 @@
 	"author": "furudean (https://github.com/furudean)",
 	"type": "module",
 	"scripts": {
-		"build": "vite build && node scripts/postbuild.js",
+		"build": "NODE_ENV=production vite build && node scripts/postbuild.js",
 		"check": "svelte-check --compiler-warnings css-unused-selector:ignore",
 		"dev": "vite dev --host --port 8080",
 		"format": "prettier --write .",
