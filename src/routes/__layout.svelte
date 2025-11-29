@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from "$app/env"
+	import { base } from "$app/paths"
 	import { resolvedTheme } from "$/stores/theme"
 	import { getAudioContext, getRootGain } from "$/lib/audio"
 	import { settings } from "$/stores/settings"

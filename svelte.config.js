@@ -1,5 +1,5 @@
 import sveltePreprocess from "svelte-preprocess"
-import adapterVercel from "@sveltejs/adapter-vercel"
+import adapter from "@sveltejs/adapter-static"
 import path from "path"
 import { readdirSync } from "fs"
 
@@ -36,7 +36,16 @@ const config = {
 	extensions: [".svelte"],
 
 	kit: {
-		adapter: adapterVercel(),
+		adapter: adapter({
+			pages: 'build',
+			assets: 'build',
+			fallback: undefined,
+			precompress: false,
+			strict: true
+		}),
+		paths: {
+			base: process.env.NODE_ENV === 'production' ? '/type-kana' : ''
+		},
 		prerender: {
 			enabled: true,
 			default: true,
