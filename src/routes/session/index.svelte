@@ -121,15 +121,18 @@
 		}
 	}
 
+	let mounted = false
+
 	onMount(() => {
 		loadProgressSound()
 		loadErrorSound()
 		loadMaximizeSound()
 		loadMinimizeSound()
+		mounted = true
 	})
 
 	// go to results if queue is empty
-	$: unquizzed.length === 0 && setTimeout(() => goto("summary"), 500)
+	$: mounted && unquizzed.length === 0 && setTimeout(() => goto("summary"), 500)
 </script>
 
 <svelte:head>

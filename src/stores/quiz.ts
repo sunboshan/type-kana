@@ -29,10 +29,13 @@ function createQuizItem(kana: string, fontFamily: string): QuizItem {
 }
 
 function createQuiz(dictionary: string[], fontFamily: string): Quiz {
+	const quizSize = 20
+	const randomKanas = Array.from({ length: quizSize }, () => 
+		dictionary[Math.floor(Math.random() * dictionary.length)]
+	)
+	
 	return {
-		unquizzed: shuffleArray(dictionary).map((kana) =>
-			createQuizItem(kana, fontFamily)
-		),
+		unquizzed: randomKanas.map((kana) => createQuizItem(kana, fontFamily)),
 		quizzed: []
 	}
 }
@@ -96,8 +99,13 @@ export function createQuizStore(): QuizStore {
 			set(createQuiz(dictionary, currentFontFamily))
 		},
 		resetWithKanas(kanas) {
+			const quizSize = 20
+			const randomKanas = Array.from({ length: quizSize }, () => 
+				kanas[Math.floor(Math.random() * kanas.length)]
+			)
+			
 			set({
-				unquizzed: shuffleArray(kanas).map((kana) =>
+				unquizzed: randomKanas.map((kana) =>
 					createQuizItem(kana, currentFontFamily)
 				),
 				quizzed: []
