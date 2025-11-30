@@ -82,7 +82,7 @@
 				History
 			</Button>
 			<Button
-				href="session"
+				href="/session"
 				disabled={$dictionary.length === 0}
 				on:click={() => {
 					playDropSound()

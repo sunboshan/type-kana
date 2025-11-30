@@ -4,6 +4,7 @@
 	import { createEventDispatcher, onMount } from "svelte"
 	import { loadDropSound, loadVictorySound, playDropSound } from "$/lib/sound"
 	import { quiz } from "$/stores/quiz"
+	import { base } from '$app/paths'
 
 	const dispatch = createEventDispatcher()
 
@@ -19,7 +20,7 @@
 </script>
 
 <section class="menu">
-	<a href="setup" class="button" title="Go back" sveltekit:prefetch>
+	<a href="{base}/setup" class="button" title="Go back" data-sveltekit-preload-data>
 		<Icon path={mdiArrowLeft} />
 	</a>
 
@@ -63,7 +64,7 @@
 	</button>
 
 	<a
-		href="/summary"
+		href="{base}/summary"
 		class="button"
 		title="Finish session"
 		on:mouseenter={() => {

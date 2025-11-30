@@ -8,6 +8,7 @@
 
 <script lang="ts">
 	import { dev } from "$app/env"
+	import { base } from '$app/paths'
 
 	export let status: number
 	export let error: Error
@@ -26,5 +27,5 @@
 {/if}
 
 {#if status === 404}
-	<a class="text-link" href="/">Go back home</a>
+	<a class="text-link" href="{base}/">Go back home</a>
 {/if}
