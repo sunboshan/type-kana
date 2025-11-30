@@ -39,12 +39,12 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: undefined,
+			fallback: null,
 			precompress: false,
-			strict: true
+			strict: false
 		}),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/type-kana' : ''
+			base: '/type-kana'
 		},
 		prerender: {
 			enabled: true,
