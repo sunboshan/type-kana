@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { base } from '$app/paths'
+
 	export let title: string = undefined
 	export let disabled = false
 	export let style: "fill" | "outline" = "fill"
@@ -8,6 +10,8 @@
 	export let href: string = undefined
 	export let target: string = undefined
 	export let rel: string = undefined
+
+	$: fullHref = href ? `${base}${href}` : undefined
 </script>
 
 {#if !href}
@@ -25,7 +29,7 @@
 	</button>
 {:else}
 	<a
-		{href}
+		href={fullHref}
 		class="button {style}"
 		class:disabled
 		aria-disabled={disabled ? true : undefined}
@@ -34,7 +38,7 @@
 		{rel}
 		{title}
 		on:click
-		sveltekit:prefetch
+		data-sveltekit-preload-data
 	>
 		<div class="effect">
 			<slot />
