@@ -38,11 +38,11 @@ export const gameConfig = persistent<GameConfig>({
 	key: "game-config",
 	storage_type: "sessionStorage",
 	start_value: {
-		kanaType: "hiragana",
+		kanaType: "katakana",
 		monographs: createKanaCheckboxColumn(hiragana.monographs, true),
 		monographsDiacritics: createKanaCheckboxColumn(
 			hiragana.monographDiacritics,
-			true
+			false
 		),
 		digraphs: createKanaCheckboxColumn(hiragana.digraphs, false),
 		digraphsDiacritics: createKanaCheckboxColumn(
