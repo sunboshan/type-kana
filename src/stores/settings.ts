@@ -13,7 +13,7 @@ export interface GameSettings {
 }
 
 const DEFAULT_VALUE: GameSettings = {
-	autoCommit: "disabled",
+	autoCommit: "forgiving",
 	theme: "same-as-system",
 	showErrorMarker: false,
 	showProgressBar: true,
