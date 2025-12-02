@@ -1,5 +1,6 @@
 import { AudioContext } from "standardized-audio-context"
 import type { GainNode } from "standardized-audio-context"
+import { base } from "$app/paths"
 
 let audioContext: AudioContext
 let rootGain: GainNode<AudioContext>
@@ -34,8 +35,9 @@ export async function getAudioBuffer(
 	}
 
 	for (const url of urlsArray) {
-		console.debug(`Fetching audio at url ${url}`)
-		const buffer = await fetch(url).then((response) => response.arrayBuffer())
+		const fullUrl = `${base}/${url}`
+		console.debug(`Fetching audio at url ${fullUrl}`)
+		const buffer = await fetch(fullUrl).then((response) => response.arrayBuffer())
 
 		try {
 			const audioBuffer = await getAudioContext().decodeAudioData(buffer)
