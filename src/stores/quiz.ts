@@ -36,7 +36,7 @@ function createQuiz(dictionary: string[], fontFamily: string): Quiz {
 		let kana: string
 		do {
 			kana = dictionary[Math.floor(Math.random() * dictionary.length)]
-		} while (i > 0 && kana === randomKanas[i - 1])
+		} while (i > 0 && dictionary.length > 1 && kana === randomKanas[i - 1])
 		randomKanas.push(kana)
 	}
 	
@@ -112,7 +112,7 @@ export function createQuizStore(): QuizStore {
 				let kana: string
 				do {
 					kana = kanas[Math.floor(Math.random() * kanas.length)]
-				} while (i > 0 && kana === randomKanas[i - 1])
+				} while (i > 0 && kanas.length > 1 && kana === randomKanas[i - 1])
 				randomKanas.push(kana)
 			}
 			
