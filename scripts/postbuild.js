@@ -19,4 +19,10 @@ cpSync(
   { recursive: true }
 );
 
+cpSync(
+  join(root, 'static'),
+  join(root, 'build'),
+  { recursive: true }
+);
+
 console.log('✓ Build files copied to build/');
