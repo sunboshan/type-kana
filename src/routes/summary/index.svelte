@@ -16,6 +16,7 @@
 	import { history } from "$/stores/history"
 	import { gameConfig } from "$/stores/game-config"
 	import { goto } from "$app/navigation"
+	import { base } from '$app/paths'
 	import { dictionary } from "$/stores/dictionary"
 
 	$: correct = $summary.correct
@@ -57,7 +58,7 @@
 		playDropSound()
 		const incorrectKanas = incorrect.map((item) => item.kana)
 		quiz.resetWithKanas(incorrectKanas)
-		goto("/session")
+		goto(`${base}/session`)
 	}
 </script>
 

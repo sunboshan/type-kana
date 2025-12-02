@@ -19,6 +19,7 @@
 	import ProgressBar from "$/components/ProgressBar.svelte"
 	import { onMount, tick } from "svelte"
 	import { goto, prefetch } from "$app/navigation"
+	import { base } from '$app/paths'
 	import { confettiAtCoordinates } from "$/lib/confetti"
 
 	const ALPHANUMERIC = /^[a-z0-9]+$/i
@@ -100,7 +101,7 @@
 		time = Date.now()
 
 		if (unquizzed.length < 5) {
-			prefetch("summary")
+			prefetch(`${base}/summary`)
 			loadVictorySound()
 		}
 
@@ -132,7 +133,7 @@
 	})
 
 	// go to results if queue is empty
-	$: mounted && unquizzed.length === 0 && setTimeout(() => goto("summary"), 500)
+	$: mounted && unquizzed.length === 0 && setTimeout(() => goto(`${base}/summary`), 500)
 </script>
 
 <svelte:head>
