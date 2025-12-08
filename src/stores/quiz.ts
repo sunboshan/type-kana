@@ -30,14 +30,28 @@ function createQuizItem(kana: string, fontFamily: string): QuizItem {
 
 function createQuiz(dictionary: string[], fontFamily: string): Quiz {
 	const quizSize = 20
-	const randomKanas: string[] = []
+	let randomKanas: string[] = []
 	
-	for (let i = 0; i < quizSize; i++) {
-		let kana: string
-		do {
-			kana = dictionary[Math.floor(Math.random() * dictionary.length)]
-		} while (i > 0 && dictionary.length > 1 && kana === randomKanas[i - 1])
-		randomKanas.push(kana)
+	if (dictionary.length <= quizSize) {
+		// 如果字典大小小于等于20，先确保每个音都出现一次
+		randomKanas = shuffleArray([...dictionary])
+		// 然后随机填充剩余的位置
+		while (randomKanas.length < quizSize) {
+			let kana: string
+			do {
+				kana = dictionary[Math.floor(Math.random() * dictionary.length)]
+			} while (dictionary.length > 1 && kana === randomKanas[randomKanas.length - 1])
+			randomKanas.push(kana)
+		}
+	} else {
+		// 原有逻辑：字典大于20时，完全随机选择
+		for (let i = 0; i < quizSize; i++) {
+			let kana: string
+			do {
+				kana = dictionary[Math.floor(Math.random() * dictionary.length)]
+			} while (i > 0 && dictionary.length > 1 && kana === randomKanas[i - 1])
+			randomKanas.push(kana)
+		}
 	}
 	
 	return {
@@ -106,14 +120,28 @@ export function createQuizStore(): QuizStore {
 		},
 		resetWithKanas(kanas) {
 			const quizSize = 20
-			const randomKanas: string[] = []
+			let randomKanas: string[] = []
 			
-			for (let i = 0; i < quizSize; i++) {
-				let kana: string
-				do {
-					kana = kanas[Math.floor(Math.random() * kanas.length)]
-				} while (i > 0 && kanas.length > 1 && kana === randomKanas[i - 1])
-				randomKanas.push(kana)
+			if (kanas.length <= quizSize) {
+				// 如果选择的音小于等于20，先确保每个音都出现一次
+				randomKanas = shuffleArray([...kanas])
+				// 然后随机填充剩余的位置
+				while (randomKanas.length < quizSize) {
+					let kana: string
+					do {
+						kana = kanas[Math.floor(Math.random() * kanas.length)]
+					} while (kanas.length > 1 && kana === randomKanas[randomKanas.length - 1])
+					randomKanas.push(kana)
+				}
+			} else {
+				// 原有逻辑：选择的音大于20时，完全随机选择
+				for (let i = 0; i < quizSize; i++) {
+					let kana: string
+					do {
+						kana = kanas[Math.floor(Math.random() * kanas.length)]
+					} while (i > 0 && kanas.length > 1 && kana === randomKanas[i - 1])
+					randomKanas.push(kana)
+				}
 			}
 			
 			set({
